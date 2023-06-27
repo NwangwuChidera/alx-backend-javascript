@@ -1,23 +1,16 @@
-// Modified taskFirst function using const and return
 export function taskFirst() {
-  const firstName = 'John';
-  const lastName = 'Doe';
-
-  return {
-    firstName: firstName,
-    lastName: lastName
-  };
+  const task = 'I prefer const when I can.';
+  return task;
 }
 
-// Modified taskNext function using let and return
- export function taskNext() {
-  let age = 25;
-  let city = 'New York';
-
-  return {
-    age: age,
-    city: city
-  };
+export function getLast() {
+  return ' is okay';
 }
 
+export function taskNext() {
+  let combination = 'But sometimes let';
+  combination += getLast();
+
+  return combination;
+}
 
