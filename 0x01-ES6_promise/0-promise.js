@@ -15,5 +15,7 @@ MyAPI.prototype.getResponseFromAPI = function() {
 const myAPI = new MyAPI();
 myAPI.getResponseFromAPI().then((response) => {
   console.log('API Response:', response);
+}).catch((error) => {
+  console.error('Error:', error);
 });
 
