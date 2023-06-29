@@ -1,40 +1,50 @@
-class Currency {
-  constructor(code, name) {
-    this.code = code;
-    this.name = name;
+import Currency from './3-currency';
+
+export default class Pricing {
+  constructor(amount, currency) {
+    this.amount = amount;
+    this.currency = currency;
+  }
+
+  get amount() {
+    return this._amount;
+  }
+
+  set amount(value) {
+    if (typeof value !== 'number') {
+      throw new TypeError('amount must be a number');
+    }
+    this._amount = value;
   }
 
   /**
-   * @param {String} code
+   * @returns {Currency}
    */
-  set code(code) {
-    if (typeof code !== 'string') {
-      throw new TypeError('Code must be a String');
-    }
-    this._code = code;
-  }
-
-  get code() {
-    return this._code;
+  get currency() {
+    return this._currency;
   }
 
   /**
-   * @param {String} name
+   * @param {Currency} value
    */
-  set name(name) {
-    if (typeof name !== 'string') {
-      throw new TypeError('Name must be a String');
+  set currency(value) {
+    if (!(value instanceof Currency)) {
+      throw new TypeError('currency must be a Currency');
     }
-    this._name = name;
+    this._currency = value;
   }
 
-  get name() {
-    return this._name;
+  displayFullPrice() {
+    return `${this.amount} ${this.currency.name} (${this.currency.code})`;
   }
 
-  displayFullCurrency() {
-    return `${this.name} (${this.code})`;
+  static convertPrice(amount, conversionRate) {
+    if (typeof amount !== 'number') {
+      throw new TypeError('amount must be a number');
+    }
+    if (typeof conversionRate !== 'number') {
+      throw new TypeError('conversionRate must be a number');
+    }
+    return amount * conversionRate;
   }
 }
-
-export default Currency;
